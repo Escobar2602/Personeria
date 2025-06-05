@@ -33,13 +33,12 @@ Route::middleware([
      return Inertia::render('Usuarios');
  }) ->name('usuarios');
 
- Route::get('/tabla', function () {
-     return Inertia::render('Tabla');
- }) ->name('tabla');
 
 
 
 Route::get('/personeria', [PersoneriaController::class, 'index'])->name('personeria.index');
+Route::get('/personeria/tabla', [PersoneriaController::class, 'tabla'])->name('personeria.tabla');
+
 Route::post('/personeria', [PersoneriaController::class, 'store'])->name('personeria.store');
 
 });

@@ -9,8 +9,12 @@ use Inertia\Inertia;
 class PersoneriaController extends Controller
 {
     public function index() {
-        return Inertia::render('Personeria/Index', [
-            'registros' => Personeria::all(),
+        return Inertia::render('Personeria/Index');
+    }
+    public function tabla() {
+        $personas = Personeria::all();
+        return Inertia::render('Personeria/Tabla', [
+            'registros' => $personas
         ]);
     }
 
@@ -28,6 +32,6 @@ class PersoneriaController extends Controller
 
         Personeria::create( $data);
 
-        return redirect()->route('personeria.index');
+        // return redirect()->route('personeria.tabla');
     }
 }
