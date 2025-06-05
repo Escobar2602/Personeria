@@ -12,7 +12,7 @@
                 <th class="p-2 border">Correo</th>
                 <th class="p-2 border">Apellido</th>
                 <th class="p-2 border">Teléfono</th>
-                <th class="p-2 border">Dirección</th>
+                <th class="p-2 border">profesion</th>
                 <th class="p-2 border">Sexo</th>
                 <th class="p-2 border">curso</th>
                 </tr>
