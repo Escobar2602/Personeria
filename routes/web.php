@@ -33,6 +33,10 @@ Route::middleware([
      return Inertia::render('Usuarios');
  }) ->name('usuarios');
 
+ Route::get('/tabla', function () {
+     return Inertia::render('Tabla');
+ }) ->name('tabla');
+
 
 
 Route::get('/personeria', [PersoneriaController::class, 'index'])->name('personeria.index');

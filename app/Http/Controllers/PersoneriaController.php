@@ -15,12 +15,18 @@ class PersoneriaController extends Controller
     }
 
     public function store(Request $request) {
-        $request->validate([
+        $data= $request->validate([
             'name' => 'required|string',
             'email' => 'required|email|unique:personeria',
+            'apellido' => 'string',
+            'curso' => 'required|numeric',
+            'profesion' => 'required|string',
+            'sexo' => 'string',
+            'telefono' => 'nullable|numeric',
+
         ]);
 
-        Personeria::create($request->only('name', 'email'));
+        Personeria::create( $data);
 
         return redirect()->route('personeria.index');
     }

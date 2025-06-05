@@ -9,6 +9,11 @@ return new class extends Migration {
         Schema::create('personeria', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('apellido');
+            $table->string('curso');
+            $table->string('profesion');
+            $table->string('sexo');
+            $table->string('telefono')->nullable();
             $table->string('email')->unique();
             $table->timestamps();
         });

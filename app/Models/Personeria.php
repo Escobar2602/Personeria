@@ -8,5 +8,5 @@ class Personeria extends Model
 {
     protected $table = 'personeria';
 
-    protected $fillable = ['name', 'email'];
+    protected $fillable = ['name', 'email', 'apellido', 'curso', 'profesion','sexo','telefono'];
 }
