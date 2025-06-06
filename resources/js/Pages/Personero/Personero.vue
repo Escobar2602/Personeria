@@ -15,7 +15,7 @@
                 </template>
                 <template #footer>
                     <div class="flex gap-4 mt-1">
-                        <Button label="Votar" class="w-full" />
+                        <Button label="Votar"  class="px-8 py-2 text-white font-bold text-lg rounded-full shadow-lg transition-transform transform bg-transparent border-2 border-white hover:scale-105 hover:border-green-600 hover:shadow-green-500/50 hover:shadow-2xl focus:outline-none"   id="startButton"/>
                     </div>
                 </template>
             </Card>
@@ -35,7 +35,7 @@
                 </template>
                 <template #footer>
                     <div class="flex gap-4 mt-1">
-                        <Button label="Votar" class="w-full" />
+                        <Button label="Votar"  class="px-8 py-2 text-white font-bold text-lg rounded-full shadow-lg transition-transform transform bg-transparent border-2 border-white hover:scale-105 hover:border-green-600 hover:shadow-green-500/50 hover:shadow-2xl focus:outline-none"   id="startButton"/>
                     </div>
                 </template>
             </Card>
@@ -55,7 +55,7 @@
                 </template>
                 <template #footer>
                     <div class="flex gap-4 mt-1">
-                        <Button label="Votar" class="w-full" />
+                        <Button label="Votar"  class="px-8 py-2 text-white font-bold text-lg rounded-full shadow-lg transition-transform transform bg-transparent border-2 border-white hover:scale-105 hover:border-green-600 hover:shadow-green-500/50 hover:shadow-2xl focus:outline-none"   id="startButton"/>
                     </div>
                 </template>
             </Card>
