@@ -29,16 +29,20 @@ Route::middleware([
     return Inertia::render('Inicio');
 }) ->name('inicio');
 
- Route::get('/usuarios', function () {
-     return Inertia::render('Usuarios');
- }) ->name('usuarios');
+ Route::get('/votar', function () {
+     return Inertia::render('Personero/Personero');
+ }) ->name('votar');
+
+  Route::get('/postulacion', function () {
+     return Inertia::render('Personero/Postulacion');
+ }) ->name('postulacion');
 
 
 
 
 Route::get('/personeria', [PersoneriaController::class, 'index'])->name('personeria.index');
 Route::get('/personeria/tabla', [PersoneriaController::class, 'tabla'])->name('personeria.tabla');
-
 Route::post('/personeria', [PersoneriaController::class, 'store'])->name('personeria.store');
+
 
 });

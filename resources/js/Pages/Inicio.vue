@@ -1,96 +1,36 @@
-<template>
-  <AppLayout>
-    <div class="bg-white shadow-md rounded-lg overflow-hidden">
-            <h2 class="text-xl font-semibold p-6 bg-gray-50 border-b text-gray-700">
-                Registros de Personería
-            </h2>
 
-            <div class="overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50">
-                        <tr>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                ID
-                            </th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Nombre
-                            </th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Apellido
-                            </th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Cargo
-                            </th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Semestre
-                            </th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Acciones
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        <tr v-for="personeria in personerias" :key="personeria.id" class="hover:bg-gray-50">
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                {{ personeria.id }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                {{ personeria.nombre }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                {{ personeria.apellido }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full"
-                                      :class="personeria.cargo === 'estudiante' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'">
-                                    {{ personeria.cargo }}
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                {{ personeria.semestre || '-' }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <button
-                                    @click="deletePersoneria(personeria.id)"
-                                    class="text-red-600 hover:text-red-900 bg-red-100 hover:bg-red-200 px-3 py-1 rounded-md transition-colors"
-                                >
-                                    Eliminar
-                                </button>
-                            </td>
-                        </tr>
-                        <tr v-if="personerias.length === 0">
-                            <td colspan="6" class="px-6 py-4 text-center text-gray-500">
-                                No hay registros disponibles
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+
+<template>
+    <AppLayout>
+        <div class="min-h-screen bg-gradient-to-br from-blue-100 to-white p-6 flex flex-col justify-center items-center text-center">
+            <div class="mb-8">
+            <img src="/images/fotoo4.jpg" alt="Logo Colegio" class="w-24 h-24 mx-auto rounded-full shadow-lg" />
+            <h1 class="text-4xl font-bold text-blue-800 mt-4">Elecciones Personero Estudiantil 2025</h1>
+            <p class="text-gray-600 mt-2">Conoce a tus candidatos, sus propuestas y participa en esta jornada democrática escolar.</p>
+            </div>
+
+            <router-link to="/candidatos">
+            <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-2xl shadow-lg transition-all">
+                Ver candidatos
+            </button>
+            </router-link>
+
+            <div class="mt-10 max-w-3xl text-gray-700">
+            <h2 class="text-2xl font-semibold text-blue-700 mb-2">¿Qué es la personería estudiantil?</h2>
+            <p>
+                Es una representación elegida por los estudiantes para velar por sus derechos, promover la participación y apoyar una sana convivencia escolar.
+                ¡Tu voz cuenta, participa con responsabilidad!
+            </p>
             </div>
         </div>
-  </AppLayout>
+
+    </AppLayout>
+
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
 import AppLayout from '@/Layouts/AppLayout.vue';
-
-// Props
-const props = defineProps({
-  personerias: {
-    type: Array,
-    default: () => []
-  },
-  errors: {
-    type: Object,
-    default: () => ({})
-  }
-})
-
-
 </script>
-
-
-
 
 <style scoped>
 </style>

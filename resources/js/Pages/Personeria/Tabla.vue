@@ -1,43 +1,27 @@
 <template>
     <AppLayout>
-
-        <div class="p-6">
-            <h1 class="text-2xl font-bold mb-4">Registros de Personería</h1>
-            <table class="w-full mt-8 border">
-            <thead class="bg-gray-100">
-                <tr>
-                <th class="p-2 border">ID</th>
-                <th class="p-2 border">Nombre</th>
-                <th class="p-2 border">Correo</th>
-                <th class="p-2 border">Apellido</th>
-                <th class="p-2 border">Teléfono</th>
-                <th class="p-2 border">profesion</th>
-                <th class="p-2 border">Sexo</th>
-                <th class="p-2 border">curso</th>
-                </tr>
-
-            </thead>
-            <tbody>
-                <tr v-for="registro in registros" :key="registro.id" class="hover:bg-gray-50">
-                <td class="p-2 border">{{ registro.id }}</td>
-                <td class="p-2 border">{{ registro.name }}</td>
-                <td class="p-2 border">{{ registro.email }}</td>
-                <td class="p-2 border">{{ registro.apellido }}</td>
-                <td class="p-2 border">{{ registro.curso }}</td>
-                <td class="p-2 border">{{ registro.profesion }}</td>
-                <td class="p-2 border">{{ registro.sexo }}</td>
-                <td class="p-2 border">{{ registro.telefono }}</td>
-                </tr>
-            </tbody>
-            </table>
+        <h1 class="text-xl text-center mb-4">Tabla de Usuarios</h1>
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <DataTable :value="registros" paginator :rows="5" showGridlines tableStyle="min-width: 50rem" class="w-full text-sm">
+                <Column field="id" header="ID"></Column>
+                <Column field="name" header="Name"></Column>
+                <Column field="apellido" header="Apellido"></Column>
+                <Column field="email" header="Correo"></Column>
+                <Column field="curso" header="curso"></Column>
+                <Column field="profesion" header="Profesion"></Column>
+                <Column field="sexo" header="Genero"></Column>
+                <Column field="telefono" header="Telefono"></Column>
+            </DataTable>
         </div>
-      </AppLayout>
+    </AppLayout>
 
 </template>
 
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
 defineProps({
-  registros: Array,
+    registros: Array,
 })
 </script>
