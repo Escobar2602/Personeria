@@ -2,26 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Postulacion;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class PostulacionController extends Controller
 {
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'foto' => 'nullable|image|max:2048',
+        $validated = $request->validate([
             'nombre' => 'required|string|max:255',
-            'grado' => 'required|string|max:255',
-            'descripcion' => 'nullable|string',
+            'descripcion' => 'required|string',
+            'foto' => 'required|image|max:2048',
         ]);
 
-        if ($request->hasFile('foto')) {
-            $data['foto'] = $request->file('foto')->store('postulaciones', 'public');
-        }
+        $path = $request->file('foto')->store('postulaciones', 'public');
 
-        Postulacion::create($data);
+        Postulacion::create([
+            'nombre' => $validated['nombre'],
+            'descripcion' => $validated['descripcion'],
+            'foto' => $path,
+        ]);
 
-        return redirect()->back()->with('success', 'Postulación registrada exitosamente.');
+    }
+
+    public function index()
+    {
+        $postulaciones = Postulacion::all();
+        return Inertia::render('Personero/Votar', [
+            'postulaciones' => $postulaciones
+        ]);
     }
 }
+

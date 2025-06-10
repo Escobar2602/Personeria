@@ -1,15 +1,17 @@
 <script setup>
 import { ref } from 'vue';
-import { Head, Link, router } from '@inertiajs/vue3';
+import {Link, router } from '@inertiajs/vue3';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import 'flowbite';
+
 
 
 const logout = () => {
     router.post(route('logout'));
 };
 const showDropdown = ref(false)
+
 
 </script>
 
@@ -95,8 +97,8 @@ const showDropdown = ref(false)
 
 
                     <li>
-                        <div  @click.prevent="showDropdown = !showDropdown"
-                                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <div @click.prevent="showDropdown = !showDropdown"
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
                                 <path
@@ -104,7 +106,8 @@ const showDropdown = ref(false)
                             </svg>
                             <span class="flex-1 ms-3 whitespace-nowrap">Personeros</span>
                             <svg class="w-3 h-3 ms-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7">
                                 </path>
                             </svg>
                         </div>
@@ -113,9 +116,9 @@ const showDropdown = ref(false)
 
                             <li>
                                 <a href="/postulacion"
-                                    class="flex items-center w-full p-2 text-gray-900 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Postulate</a>
+                                    class="flex items-center w-full p-2 text-gray-900 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Postulacion</a>
                             </li>
-                             <li>
+                            <li>
                                 <a href="/votar"
                                     class="flex items-center w-full p-2 text-gray-900 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Votacion</a>
                             </li>
