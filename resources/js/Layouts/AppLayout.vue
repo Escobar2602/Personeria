@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import { Link, router } from '@inertiajs/vue3';
+import {Link, router } from '@inertiajs/vue3';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import 'flowbite';
@@ -39,7 +39,7 @@ const showDropdown = ref(false)
                     <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Personeria</span>
                 </a>
                 <ul class="space-y-2 font-medium">
-                    <li v-if="['admin'].includes($page.props.auth.user.role)">
+                <li v-if="['admin'].includes($page.props.auth.user.role)">
                         <a href="/dashboard"
                             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -67,13 +67,13 @@ const showDropdown = ref(false)
                         </Link>
                     </li>
 
-                    <li v-if="['admin', 'personero'].includes($page.props.auth.user.role)">
+                    <li v-if="['admin','personero'].includes($page.props.auth.user.role)">
 
-                        <Link :href="route('personeria.index')"
+                    <Link :href="route('personeria.index')"
                             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <i class="pi pi-user-plus text-lg me-2"></i>
                         <span class="ms-3">Registro Personeria</span>
-                        </Link>
+                    </Link>
                     </li>
 
                     <li v-if="['admin'].includes($page.props.auth.user.role)">
@@ -110,7 +110,7 @@ const showDropdown = ref(false)
 
                         <ul v-show="showDropdown" class="py-2 space-y-2">
 
-                            <li v-if="['admin', 'personero'].includes($page.props.auth.user.role)">
+                            <li v-if="['admin','personero'].includes($page.props.auth.user.role)">
                                 <a href="/postulacion"
                                     class="flex items-center w-full p-2 text-gray-900 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Postulacion</a>
                             </li>
@@ -212,50 +212,26 @@ const showDropdown = ref(false)
                                 </template>
 
                                 <template #content>
-                                    <div class="dropdown">
-                                        <input hidden="" class="sr-only" name="state-dropdown" id="state-dropdown"
-                                            type="checkbox" />
-                                        <label aria-label="dropdown scrollbar" for="state-dropdown"
-                                            class="trigger"></label>
-
-                                        <ul class="list webkit-scrollbar" role="list" dir="auto">
-                                            <li class="listitem" role="listitem">
-                                                <article
-                                                    class="article font-semibold text-xs text-gray-500 uppercase tracking-wide">
-                                                    Administrar cuenta
-                                                </article>
-                                            </li>
-                                            <li class="listitem" role="listitem">
-                                                <article class="article">
-                                                    <a :href="route('profile.show')"
-                                                        class="flex items-center px-4 py-2 hover:bg-gray-100 rounded transition">
-                                                        Perfil
-                                                    </a>
-                                                </article>
-
-
-                                            </li>
-                                            <li class="listitem" role="listitem"
-                                                v-if="$page.props.jetstream.hasApiFeatures">
-                                                <article class="article">
-                                                    <a href="{{ route('api-tokens.index') }}"
-                                                        class="flex items-center px-4 py-2 hover:bg-gray-100 rounded transition">
-                                                        Tokens API
-                                                    </a>
-                                                </article>
-                                            </li>
-                                            <li class="listitem" role="listitem">
-                                                <article class="article">
-                                                    <form @submit.prevent="logout">
-                                                        <button type="submit"
-                                                            class="flex items-center px-4 py-2 text-red-600 hover:bg-red-50 rounded transition">
-                                                            Cerrar sesión
-                                                        </button>
-                                                    </form>
-                                                </article>
-                                            </li>
-                                        </ul>
+                                    <div class="block px-4 py-2 text-xs text-gray-400">
+                                        Manage Account
                                     </div>
+
+                                    <DropdownLink :href="route('profile.show')">
+                                        Profile
+                                    </DropdownLink>
+
+                                    <DropdownLink v-if="$page.props.jetstream.hasApiFeatures"
+                                        :href="route('api-tokens.index')">
+                                        API Tokens
+                                    </DropdownLink>
+
+                                    <div class="border-t border-gray-200" />
+
+                                    <form @submit.prevent="logout">
+                                        <DropdownLink as="button" class="w-full text-left">
+                                            Log Out
+                                        </DropdownLink>
+                                    </form>
                                 </template>
                             </Dropdown>
                         </div>
@@ -271,165 +247,4 @@ const showDropdown = ref(false)
 
     </div>
 
-
 </template>
-<style scoped>
-/* From Uiverse.io by ilkhoeri */
-.dropdown {
-    border: 1px solid #c1c2c5;
-    border-radius: 12px;
-    transition: all 300ms;
-    display: flex;
-    flex-direction: column;
-    min-height: 58px;
-    background-color: white;
-    overflow: hidden;
-    position: relative;
-    inset-inline: auto;
-    max-width: 298px;
-    min-width: 298px;
-}
-
-.dropdown input:where(:checked)~.list {
-    opacity: 1;
-    transform: translateY(-3rem) scale(1);
-    transition: all 500ms ease;
-    margin-top: 32px;
-    padding-top: 4px;
-    margin-bottom: -32px;
-}
-
-.dropdown input:where(:not(:checked))~.list {
-    opacity: 0;
-    transform: translateY(3rem);
-    margin-top: -100%;
-    user-select: none;
-    height: 0px;
-    max-height: 0px;
-    min-height: 0px;
-    pointer-events: none;
-    transition: all 500ms ease-out;
-}
-
-.trigger {
-    cursor: pointer;
-    list-style: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-    font-weight: 600;
-    color: inherit;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-flow: row;
-    gap: 1rem;
-    padding: 1rem;
-    height: max-content;
-    position: relative;
-    z-index: 99;
-    border-radius: inherit;
-    background-color: white;
-}
-
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
-}
-
-.dropdown input:where(:checked)+.trigger {
-    margin-bottom: 1rem;
-}
-
-.dropdown input:where(:checked)+.trigger:before {
-    rotate: 90deg;
-    transition-delay: 0ms;
-}
-
-.dropdown input:where(:checked)+.trigger::after {
-    content: "Close Dropdown";
-}
-
-.trigger:before,
-.trigger::after {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.trigger:before {
-    content: "›";
-    rotate: -90deg;
-    width: 17px;
-    height: 17px;
-    color: #262626;
-    border-radius: 2px;
-    font-size: 26px;
-    transition: all 350ms ease;
-    transition-delay: 85ms;
-}
-
-.trigger::after {
-    content: "Open Dropdown";
-}
-
-.list {
-    height: 100%;
-    max-height: 20rem;
-    width: calc(100% - calc(var(--w-scrollbar) / 2));
-    display: grid;
-    grid-auto-flow: row;
-    overflow: hidden auto;
-    gap: 1rem;
-    padding: 0 1rem;
-    margin-right: -8px;
-    --w-scrollbar: 8px;
-}
-
-.listitem {
-    height: 100%;
-    width: calc(100% + calc(calc(var(--w-scrollbar) / 2) + var(--w-scrollbar)));
-    list-style: none;
-}
-
-.article {
-    padding: 1rem;
-    border-radius: 8px;
-    font-size: 15px;
-    font-weight: 500;
-    text-align: justify;
-    width: 100%;
-    border: 1px solid #c1c2c5;
-    display: inline-block;
-    background-color: white;
-}
-
-.webkit-scrollbar::-webkit-scrollbar {
-    width: var(--w-scrollbar);
-    height: var(--w-scrollbar);
-    border-radius: 9999px;
-}
-
-.webkit-scrollbar::-webkit-scrollbar-track {
-    background: #0000;
-}
-
-.webkit-scrollbar::-webkit-scrollbar-thumb {
-    background: #0000;
-    border-radius: 9999px;
-}
-
-.webkit-scrollbar:hover::-webkit-scrollbar-thumb {
-    background: #c1c2c5;
-}
-</style>
-
-
