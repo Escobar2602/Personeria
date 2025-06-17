@@ -65,6 +65,7 @@
                 </div>
             </div>
         </div>
+        {{ $page.props.auth.user }}
     </AppLayout>
 </template>
 

@@ -22,7 +22,8 @@
                 </div>
                 <div>
                     <label class="block mb-1 text-white">Teléfono</label>
-                    <input v-model="form.telefono" type="number" class="w-full border rounded p-2" />
+                    <input v-model="form.telefono" type="number
+                    " class="w-full border rounded p-2" />
                     <div v-if="form.errors.telefono" class="text-red-500 text-sm">{{ form.errors.telefono }}</div>
                 </div>
                 <div>
