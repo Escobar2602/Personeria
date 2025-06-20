@@ -74,7 +74,7 @@ function toggleSidebar() {
                         <span class="ms-3">inicio</span>
                         </Link>
                     </li>
-                      <li>
+                <li v-if="['admin'].includes($page.props.auth.user.role)">
                         <Link :href="route('usuarios.index')"
                             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
 
@@ -85,7 +85,7 @@ function toggleSidebar() {
                             <path
                                 d="M10.707 7.293a1.003 1.003 0 0 0-1.414-1.414l-4.5 4.5a1.003 1.003 0 0 0-.293.707v3a1.003 1.003 0 0 0 .293.707l4.5 4.5a1.003 1.003 0 1 0 1.414-1.414L7.414 15H11a3.002 3.002 0 0 0 .293-5.993L10.707 7.293Z" />
                         </svg>
-                        <span class="ms-3">Usuarios</span>
+                        <span class="ms-3">Tabla User</span>
                         </Link>
                     </li>
 

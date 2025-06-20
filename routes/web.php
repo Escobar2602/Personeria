@@ -8,10 +8,13 @@ use App\Http\Controllers\UsuarioController;
 
 use App\Http\Controllers\PostulacionController;
 use App\Http\Controllers\VotacionController;
+use App\Http\Controllers\UserRoleController;
 
-
-
+//manejo de roles en la tabla
+Route::post('/usuarios/{usuario}/asignar-rol', [UserRoleController::class, 'asignarRol'])->name('asignarRol');
 Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
+
+
 
     Route::get('/', function () {
         return Inertia::render('Welcome', [
