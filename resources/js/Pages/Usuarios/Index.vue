@@ -13,14 +13,14 @@
                 <Column header="Acciones">
                     <template #body="slotProps">
                         <div class="flex space-x-2">
-                            <button>
+                            <button @click="editarUsuario(slotProps.data)">
                                 <span class="shadow"></span>
                                 <span class="edge"></span>
                                 <span class="front text"> Editar
                                 </span>
                             </button>
 
-                            <button>
+                            <button @click="eliminarUsuario(slotProps.data)">
                                 <span class="shadowv"></span>
                                 <span class="edgev"></span>
                                 <span class="frontv text"> Eliminar
@@ -68,8 +68,15 @@ import { FilterMatchMode } from '@primevue/core/api';
 import Column from 'primevue/column';
 import Select from 'primevue/select';
 import { InputText } from 'primevue';
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 import { router } from '@inertiajs/vue3';
+
+
+const eliminarUsuario = (user) => {
+    if (confirm(`¿Seguro que deseas eliminar a ${user.name}?`)) {
+        router.delete(route('usuarios.destroy', user.id));
+    }
+};
 
 const filters = ref({
     'global': { value: null, matchMode: FilterMatchMode.CONTAINS },

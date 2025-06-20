@@ -14,7 +14,8 @@ use App\Http\Controllers\UserRoleController;
 Route::post('/usuarios/{usuario}/asignar-rol', [UserRoleController::class, 'asignarRol'])->name('asignarRol');
 Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
 
-
+//eliminar
+Route::delete('/usuarios/{user}', [UsuarioController::class, 'destroy'])->name('usuarios.destroy');
 
     Route::get('/', function () {
         return Inertia::render('Welcome', [

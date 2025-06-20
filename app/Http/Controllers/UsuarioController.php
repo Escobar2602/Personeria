@@ -14,4 +14,10 @@ class UsuarioController extends Controller
             'usuarios' => $usuarios
         ]);
     }
+
+    public function destroy(User $user)
+    {
+       $user ->delete();
+        return redirect()->back();
+    }
 }
