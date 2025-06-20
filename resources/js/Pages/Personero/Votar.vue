@@ -46,17 +46,19 @@
 
 
 <script setup>
-import AppLayout from '@/Layouts/AppLayout.vue';
+    import AppLayout from '@/Layouts/AppLayout.vue'
 
 
+    defineProps({
+    postulaciones: Array
+    })
 
-defineProps({
-  postulaciones: Array
-});
 
-function votar(id) {
-  Inertia.post('/votar', {
-    postulacion_id: id
-  });
-}
+    function votar(id) {
+        console.log('Enviando voto para ID:', id) 
+        Inertia.post('/votar3', {
+            postulacion_id: id
+        })
+        }
+
 </script>

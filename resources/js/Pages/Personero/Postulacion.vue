@@ -112,6 +112,17 @@ const form = useForm({
   foto: null
 })
 
+function submit() {
+  form.post ( route('votar.store'), {
+    onSuccess: () => {
+      form.reset()
+    },
+    onError: (errors) => {
+      console.error(errors)
+    }
+  })
+}
+
 const previewImage = ref(null)
 
 function onFileChange(event) {
@@ -130,16 +141,7 @@ function removeImage() {
   previewImage.value = null
 }
 
-function submit() {
-  form.post ( route('votar.store'), {
-    onSuccess: () => {
-      form.reset()
-    },
-    onError: (errors) => {
-      console.error(errors)
-    }
-  })
-}
+
 </script>
 
 <style scoped>

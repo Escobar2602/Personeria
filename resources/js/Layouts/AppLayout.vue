@@ -8,10 +8,16 @@ import 'primeicons/primeicons.css'
 
 
 
+
 const logout = () => {
     router.post(route('logout'));
 };
 const showDropdown = ref(false)
+const sidebarOpen = ref(true);
+
+function toggleSidebar() {
+  sidebarOpen.value = !sidebarOpen.value;
+}
 
 
 </script>
@@ -19,8 +25,7 @@ const showDropdown = ref(false)
 
 <template>
     <div>
-        <button data-drawer-target="separator-sidebar" data-drawer-toggle="separator-sidebar"
-            aria-controls="separator-sidebar" type="button"
+        <button @click="toggleSidebar"
             class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
             <span class="sr-only">Open sidebar</span>
             <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
@@ -30,9 +35,12 @@ const showDropdown = ref(false)
             </svg>
         </button>
 
-        <aside id="logo-sidebar"
-            class="fixed top-0 left-0 z-40 w-64 h-screen shadow-2xl border-spacing-3   transition-transform -translate-x-full sm:translate-x-0"
-            aria-label="Sidebar">
+        <aside
+          id="logo-sidebar"
+          :class="sidebarOpen ? 'open' : 'closed'"
+          class="fixed top-0 left-0 z-40 w-64 h-screen shadow-2xl border-spacing-3 transition-transform sm:translate-x-0"
+          aria-label="Sidebar"
+        >
             <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
                 <a href="https://flowbite.com/" class="flex items-center ps-2.5 mb-5">
                     <!-- <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 me-3 sm:h-7" alt="Flowbite Logo" /> -->
@@ -66,30 +74,20 @@ const showDropdown = ref(false)
                         <span class="ms-3">inicio</span>
                         </Link>
                     </li>
-
-                    <li v-if="['admin','personero'].includes($page.props.auth.user.role)">
-
-                    <Link :href="route('personeria.index')"
+                      <li>
+                        <Link :href="route('usuarios.index')"
                             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <i class="pi pi-user-plus text-lg me-2"></i>
-                        <span class="ms-3">Registro Personeria</span>
-                    </Link>
-                    </li>
 
-                    <li v-if="['admin'].includes($page.props.auth.user.role)">
-
-                        <Link :href="route('personeria.tabla')"
-                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                             <path
-                                d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z" />
+                                d="M10 2a8 8 0 1 0 8 8A8.009 8.009 0 0 0 10 2Zm0 14a6 6 0 1 1 6-6 6.007 6.007 0 0 1-6 6Z" />
+                            <path
+                                d="M10.707 7.293a1.003 1.003 0 0 0-1.414-1.414l-4.5 4.5a1.003 1.003 0 0 0-.293.707v3a1.003 1.003 0 0 0 .293.707l4.5 4.5a1.003 1.003 0 1 0 1.414-1.414L7.414 15H11a3.002 3.002 0 0 0 .293-5.993L10.707 7.293Z" />
                         </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">tabla</span>
-
+                        <span class="ms-3">Usuarios</span>
                         </Link>
                     </li>
-
 
 
                     <li>
@@ -248,3 +246,4 @@ const showDropdown = ref(false)
     </div>
 
 </template>
+

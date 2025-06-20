@@ -14,6 +14,7 @@ class PostulacionController extends Controller
             'nombre' => 'required|string|max:255',
             'descripcion' => 'required|string',
             'foto' => 'required|image|max:2048',
+            // 'votos' => 'nullable|integer',
         ]);
 
         $path = $request->file('foto')->store('postulaciones', 'public');

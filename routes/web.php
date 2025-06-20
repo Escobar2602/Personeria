@@ -3,12 +3,15 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\PersoneriaController;
 use App\Models\Postulacion;
+use App\Http\Controllers\UsuarioController;
+
 use App\Http\Controllers\PostulacionController;
+use App\Http\Controllers\VotacionController;
 
 
 
+Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
 
     Route::get('/', function () {
         return Inertia::render('Welcome', [
@@ -63,9 +66,9 @@ use App\Http\Controllers\PostulacionController;
         return Inertia::render('Inicio');
     })->name('inicio');
 
-    Route::get('/personeria', [PersoneriaController::class, 'index'])->name('personeria.index');
-    Route::get('/personeria/tabla', [PersoneriaController::class, 'tabla'])->name('personeria.tabla');
-    Route::post('/personeria', [PersoneriaController::class, 'store'])->name('personeria.store');
 
+
+    //para que guarde
+    Route::post('votar3' , [VotacionController::class, 'store'])->name('votar3');
 
 });

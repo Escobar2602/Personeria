@@ -80,9 +80,9 @@
                                 </InputLabel>
                             </div>
                             <div class="flex items-center justify-between mt-6">
-                                <Link :href="route('home')" class="text-sm text-blue-400 hover:underline">
+                                <!-- <Link :href="route('home')" class="text-sm text-blue-400 hover:underline">
                                     Ya estas registrado?
-                                </Link>
+                                </Link> -->
                                 <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                                     Registers
                                 </PrimaryButton>
