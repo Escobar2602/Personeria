@@ -7,8 +7,8 @@ import Aura from '@primeuix/themes/aura';
 
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
-import { Ziggy } from 'ziggy-js';
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+import { ZiggyVue } from 'ziggy-js';
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
