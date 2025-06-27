@@ -9,7 +9,10 @@ class Votacion extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'postulacion_id',
-    ];
+    protected $fillable = ['postulacion_id', 'user_id'];
+    
+    public function postulacion()
+    {
+        return $this->belongsTo(Postulacion::class);
+    }
 }

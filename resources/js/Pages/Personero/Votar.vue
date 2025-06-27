@@ -28,11 +28,13 @@
           </div>
           <div class="px-6 pb-6 flex justify-center">
             <button
-              @click="votar(postulacion.id)"
-              class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300"
-            >
-              Votar
-            </button>
+                @click="votar(postulacion.id)"
+                :disabled="yaVoto"
+                class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                Votar
+                </button>
+
           </div>
         </div>
       </div>
@@ -40,7 +42,7 @@
   </AppLayout>
 </template>
 
-<script setup>
+<!-- <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue'
 
 defineProps({
@@ -48,11 +50,40 @@ defineProps({
 })
 
 function votar(id) {
+  console.log('Votando por:', id)
   Inertia.post('/votar3', {
     postulacion_id: id
   })
 }
+</script> -->
+<script setup>
+import { ref } from 'vue'
+import { router } from '@inertiajs/vue3'
+import AppLayout from '@/Layouts/AppLayout.vue'
+
+defineProps({
+  postulaciones: Array
+})
+
+const yaVoto = ref(false)
+
+function votar(id) {
+  if (yaVoto.value) return
+
+  router.post('/votar3', {
+    postulacion_id: id
+  }, {
+    onSuccess: () => {
+      yaVoto.value = true
+      alert('✅ Voto registrado correctamente.')
+    },
+    onError: () => {
+      alert('❌ Hubo un error al registrar el voto. Intenta de nuevo.')
+    }
+  })
+}
 </script>
+
 
 <style scoped>
 .animate-fade-in {

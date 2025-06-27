@@ -8,13 +8,12 @@ class Postulacion extends Model
 {
     protected $fillable = ['nombre', 'descripcion', 'foto'];
     protected $table = 'postulacions';
-    public function index()
-{
-    $postulaciones = Postulacion::all();
-    return inertia('Personero/Votar', [
-        'postulaciones' => $postulaciones
-    ]);
-}
+
+    public function votacion(){
+
+        return $this ->hasMany(Votacion::class);
+
+    }
 
 
 }

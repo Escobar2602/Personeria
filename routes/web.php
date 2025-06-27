@@ -9,6 +9,8 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\PostulacionController;
 use App\Http\Controllers\VotacionController;
 use App\Http\Controllers\UserRoleController;
+use App\Models\User;
+use App\Models\Votacion;
 
 //manejo de roles en la tabla
 Route::post('/usuarios/{usuario}/asignar-rol', [UserRoleController::class, 'asignarRol'])->name('asignarRol');
@@ -61,9 +63,13 @@ Route::delete('/usuarios/{user}', [UsuarioController::class, 'destroy'])->name('
     ])->group(function () {
 
     Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard1');
-
+    return Inertia::render('Dashboard', [
+        'usuariosCount' => User::count(),
+        'postulacionesCount' => Postulacion::count(),
+        'totalvotos' =>Votacion::count(),
+        'postulaciones' =>Postulacion::with('votacion') ->get()
+    ]);
+})->name('dashboard1');
 
 
     Route::get('/inicio', function () {
