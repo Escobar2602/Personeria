@@ -25,6 +25,9 @@
             <p class="text-gray-700 text-sm leading-relaxed">
               {{ postulacion.descripcion }}
             </p>
+            <p class="text-gray-700 text-sm leading-relaxed">
+              {{ postulacion.grado }}
+            </p>
           </div>
           <div class="px-6 pb-6 flex justify-center">
             <button

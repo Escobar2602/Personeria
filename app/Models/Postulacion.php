@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Postulacion extends Model
 {
-    protected $fillable = ['nombre', 'descripcion', 'foto'];
+    protected $fillable = ['nombre', 'descripcion', 'foto','grado'];
     protected $table = 'postulacions';
 
     public function votacion(){

@@ -14,7 +14,7 @@ class PostulacionController extends Controller
             'nombre' => 'required|string|max:255',
             'descripcion' => 'required|string',
             'foto' => 'required|image|max:2048',
-            // 'votos' => 'nullable|integer',
+            'grado' => 'required|string',
         ]);
 
         $path = $request->file('foto')->store('postulaciones', 'public');
@@ -23,6 +23,8 @@ class PostulacionController extends Controller
             'nombre' => $validated['nombre'],
             'descripcion' => $validated['descripcion'],
             'foto' => $path,
+            'grado' => $validated['grado'],
+
         ]);
 
     }
